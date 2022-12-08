@@ -1,0 +1,18 @@
+.flex-row {
+  display: flex;
+}
+
+.flex-column {
+  flex: 33.33%;
+  padding: 0px;
+  margin: 0px;
+  flex-shrink: 0;
+}
+
+.full-page {
+    position:absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0px;
+}
