@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>DT Symposium</title>
+  <link rel="stylesheet" href="./reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="./reveal.js/dist/reveal.css">
+  <!-- <link rel="stylesheet" href="dist/theme/black.css" id="theme"> -->
+  <link rel="stylesheet" href="./reveal.js/dist/theme/custom.css"
+  <link rel="stylesheet" href="./reveal.js/dist/addon.css"
+  id="theme"><!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href=
+  "./reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="footer-left" id="footer1" style="display: none;">
+      Alex Y. Chen<br>
+      cyuran@wustl.edu
+    </div>
+    <div class="footer-right" id="footer2" style="display: none;">
+      Digital Transformation
+    </div>
+    <div class="slides">
+      <!-- Start the slides here, each slide is in its own <section> -->
+      <section>
+        <div class="title-page">
+          <h3 style=
+          "font-size: 5.5vw; padding-top: 1vh; padding-bottom: 1vh; margin-bottom: 0px;">
+            Understanding the Physics of Extreme Plasmas using Massively Parallel Simulations
+          </h3>
+          <div class="content">
+            <p class="author" style="font-size: 2.5vw;">Alexander
+            Y. Chen<br>
+            <span style="font-size: 1.8vw;">Physics Department, WashU</span></p>
+            <div style="line-height: 40%;">
+              <br>
+            </div>
+            <p class="coauthor" style="font-size: 2.5vw;">with <em>Yajie Yuan</em></p>
+            <div style="line-height: 30%;">
+              <br>
+            </div>
+            <!-- <p class="institute">Seminar at Washington University</p> -->
+            <div style="line-height: 60%">
+              <br>
+            </div>
+            <p class="date" style="font-size: 2.0vw;">Dec 12, 2022</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div style="position: fixed; left: 3vw;">
+          <!-- <div> -->
+          <img src="figures/yuan.jpg" style="margin: 0; padding: 0; left: 0; height: 100vh;">
+        </div>
+        <div style="position: fixed; left: 60vw;">
+          <!-- <div> -->
+          <img src="figures/yajie.jpg" style="margin: 0; padding: 0; left: 0; height: 100vh;">
+        </div>
+        <!-- <div style="position: fixed; left: 60vw; top: 15vh; font-size: 5vh; text-align: left;">
+             <p>Latest collaborative project</p>
+             <p>Tony Xingyue Chen</p>
+             <br>
+             <p>Born on 11/9/2022</p>
+             </div> -->
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>What is Plasma</h2>
+          <div class="content">
+            <div class="img-container"><img src="figures/plasma-4th-state.png" style=
+            "width: 250%;">
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Astrophysical Plasmas</h2>
+          <div style="position: fixed; left: 0; top: 20vh; width: 100vw;">
+            <div class="row" style="display: flex; align-content: flex-start;">
+              <div class="column flex-column">
+                <img src="figures/plasma-solar-corona.jpg" style="width:100%; margin: 0; padding: 0;">
+                <br>
+                Solar Corona
+              </div>
+              <div class="column flex-column">
+                <img src="figures/plasma-crab-nebula.jpg" style="width:100%; margin: 0; padding: 0;">
+                <br>
+                Pulsar Wind Nebulae
+              </div>
+              <div class="column flex-column">
+                <img src="figures/plasma-m87.jpg" style="width:100%; margin: 0; padding: 0;">
+                <br>
+                Supermassive Blackholes
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Simulating Plasma</h2>
+          <div class="content">
+            <p>Particle-in-Cell (PIC) is the state-of-art computer algorithm to
+            simulate the complex plasma dynamics.</p>
+            <div class="row">
+              <div class="column" style="width: 44%;">
+                <img src="figures/pic.png">
+              </div>
+              <div class="column" style="width: 56%;">
+                <img src="figures/summit.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Pulsars</h2>
+          <div id="overlay" class="fragment" style= "font-size: 80%;">
+            <ul>
+              <li>
+                Ultra-strong magnetic field: $10^{8}\,\mathrm{T}$, about a
+                trillion ($10^{12}$) times higher than Earth's magnetic field.
+              </li><br>
+              <li>
+                Extremely compact: near 1.5 solar mass packed into about
+                $10\,\mathrm{km}$.
+              </li><br>
+              <li>
+                Fast spinning: rotation period between a few seconds to a few milliseconds.
+              </li><br>
+              <li>
+                Strong pulsed radiation from GHz radio waves to TeV gamma-rays
+              </li>
+              <!-- <li>Pulsars are rapidly rotating neutron stars that have a high
+                   surface magnetic field $B\sim 10^{12}\,\mathrm{G}$. They are extremely
+                   compact, with typical mass $M \sim 1.4M_\odot$ and radius $R \sim
+                   10\,\mathrm{km}$.</li><br>
+                   <li class="fragment">Most known pulsars emit GHz radio pulses at regular
+                   intervals, which is believed to be their rotation
+                   period $P$. The radiation is beamed and we see the pulsation every
+                   time it sweeps past us</li><br>
+                   <li class="fragment">Pulsars slowly spin down over millions of years,
+                   most pulsars have well-measured $\dot{P}$, which depends on their magnetic field.</li><br> -->
+              <!-- <li class="fragment">Spin-down power depends on the magnetic dipole
+                   moment. $L_\mathrm{sd}\sim \mu^2\Omega^4$.</li> -->
+            </ul>
+          </div>
+          <div id="overlay" class="fragment fade-in-then-out">
+              <img src="figures/fermi-lightcurves.jpg"
+                   style="height: 85%;"><br>
+              Example light curves of pulsars (Credit: Fermi-LAT)
+          </div>
+          <!-- <div id="overlay" class="fragment fade-in">
+               <img src="figures/pulsar-ppdot.png"
+               style="height: 85%;"><br>
+               (Harding 2013)
+               </div> -->
+        </div>
+        <canvas id="bgcanvas" data-sample="star_dipole"></canvas>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Structure of the Pulsar Magnetosphere</h2>
+          <div class="content">
+            <video controls="" style="width: 80%;"><source src=
+            "./movies/pulsar.mp4" type="video/mp4"></video><br>
+            (<em>Chen</em> & Beloborodov 2014)
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Structure of the Pulsar Magnetosphere</h2>
+          <div class="content" style="font-size: 4vh;">
+            <p>Recently, NICER made unprecedented measurements of
+            the thermal X-ray emission from a millisecond pulsar
+            PSR J0030+0451.</p>
+            <div class="img-container"><img src=
+            "figures/nicer-hot-spots.png" style=
+            "width: 50%;"></div>(Riley et al. 2019)
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Structure of the Pulsar Magnetosphere</h2>
+          <div class="content">
+            <p>Multi-wavelength light curves of PSR J0030+0451 from first-principles simulations</p>
+
+            <div class="row">
+              <div class="column" width="60%">
+                <img src="figures/magnetosphere-emission.png" width="100%">
+                (<em>Chen</em>, <em>Yuan</em>, et al 2020)
+              </div>
+              <div class="column" widht="35%">
+                <img src="figures/multi-wavelength-label.png" width="70%">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-background-iframe="https://www.pulsarmagnetosphere.com/PSRJ0030/ffe.html">
+        <!-- <div class="stretch">
+             <iframe src="https://www.pulsarmagnetosphere.com/PSRJ0030/ffe.html"
+             height="100%" width="100%"/>
+             </div> -->
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Pulsar Radio Emission</h2>
+          <div class="content" style="font-size: 5vh;">
+            <div class="row">
+              <div class="column" style="width: 50%;">
+              <!-- <img src="figures/pair-magnetic-white.png" style="width: 40%;"> -->
+                <img src="figures/polar-cap-discharge.png">
+              </div>
+              <div class="column" style="width: 10%;">
+                <br>
+              </div>
+              <div class="column" style="width: 40%;">
+                <p>Pulsars drive constant $e^\pm$ pair production at their polar
+                caps through QED processes in strong magnetic fields.</p>
+                <br>
+                <p>This process may be the key to solving the long-standing
+                puzzle of pulsar radio emission.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Pulsar Radio Emission</h2>
+          <div class="content" style="font-size: 5vh;">
+            <p> Fully self-consistent QED Particle-in-Cell
+                simulations of the polar cap pair cascade shows EM waves are
+                generated, similar to the observed radio waves.</p>
+            <div style="line-height: 70%;">
+              <br>
+            </div>
+            <video controls="" style="width: 80%;"><source src=
+            "./movies/e-p-epar.mov"></video>
+            <br>
+            (Cruz, <em>Chen</em>, et al. 2021)
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Digital Transformation</h2>
+          <div class="content">
+            Using digital technology to transform how we conduct
+            <em>Research</em>, <em>Teaching</em>, and <em>Scientific Communication</em>.
+          </div>
+        </div>
+      </section>
+
+      <section data-background-iframe="http://www.pulsarmagnetosphere.com/RVM_visualize/">
+      </section>
+
+      <section>
+        <div class="content-page">
+          <h2>Digital Transformation</h2>
+          <div class="content">
+            Using digital technology to transform how we conduct
+            <em>Research</em>, <em>Teaching</em>, and <em>Scientific Communication</em>.
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+  <script src="js/head.min.js"></script>
+  <script>
+
+
+      head.js(
+        "vendor/jquery.min.js",
+        "vendor/three.js/build/three.min.js",
+        "vendor/three.js/examples/js/controls/OrbitControls.js",
+        /* "vendor/socket.io-client/dist/socket.io.js", */
+        "vendor/THREE.MeshLine.js",
+        /* "vendor/dat.gui.min.js",*/
+        "vendor/EventEmitter.js",
+        "js/samples.js",
+      );
+  </script>
+  <script src="./reveal.js/dist/reveal.js"></script>
+  <script src="./reveal.js/plugin/math/math.js"></script>
+  <script src="./reveal.js/plugin/notes/notes.js"></script>
+  <script src="./reveal.js/plugin/markdown/markdown.js"></script>
+  <script src="./reveal.js/plugin/highlight/highlight.js"></script>
+
+  <script>
+
+
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        transition: "fade",
+          slideNumber: true,
+          history: true,
+        center: false,
+        width: "100%",
+        height: "100%",
+        disableLayout: false,
+        // minScale: 1,
+        // maxScale: 1,
+        margin: 0,
+        padding: 0,
+        hash: true,
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          // pass other options into `MathJax.Hub.Config()`
+          TeX: { Macros: { RR: "{\\bf R}" } }
+        },
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ]
+      });
+      Reveal.configure({
+          keyboard: {
+              81: null, // Do not respond to Q
+              32: null, // Do not respond to space
+          }
+      });
+      Reveal.addEventListener("slidechanged", function(event) {
+        var foot1 = document.getElementById("footer1");
+        var foot2 = document.getElementById("footer2");
+
+        if (Reveal.getIndices().h === 0) {
+          foot1.style.display = "none";
+          foot2.style.display = "none";
+        } else {
+          foot1.style.display = "block";
+          foot2.style.display = "block";
+        }
+      });
+
+  </script>
+</body>
+</html>
