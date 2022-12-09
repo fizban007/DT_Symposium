@@ -106,28 +106,38 @@
 
       function resizeRendererToDisplaySize(renderer) {
         const canvas = renderer.domElement;
-        const width = canvas.clientWidth;
-        const height = canvas.clientHeight;
-        const needResize = canvas.width !== width || canvas.height !== height;
+        // console.log(window.innerWidth, window.innerHeight, width, height, canvas.width);
+        // const width = canvas.clientWidth;
+        // const height = canvas.clientHeight;
+        const new_width = window.innerWidth;
+        const new_height = window.innerHeight;
+        const needResize = width !== new_width || height !== new_height;
         if (needResize) {
-          renderer.setSize(width, height, false);
+          renderer.setSize(new_width, new_height, false);
+          width = new_width;
+          height = new_height;
+          canvas.width = new_width;
+          canvas.height = new_height;
+          canvas.style.width = `${width}px`;
+          canvas.style.height = `${height}px`;
         }
         return needResize;
       }
 
-      function onCanvasResize(){
+      // function onCanvasResize(){
+      //   renderer.setSize( canvas.clientWidth, canvas.clientHeight, false );
 
-        camera.aspect = canvas.width / canvas.height;
-        camera.updateProjectionMatrix();
-
-        renderer.setSize( canvas.width, canvas.height, false );
-
-      }
+      //   camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      //   camera.updateProjectionMatrix();
+      //   console.log(canvas);
+      // }
 
       function animate() {
+        // console.log(canvas);
         if (resizeRendererToDisplaySize(renderer)) {
           const canvas = renderer.domElement;
-          camera.aspect = canvas.clientWidth / canvas.clientHeight;
+          // camera.aspect = canvas.clientWidth / canvas.clientHeight;
+          camera.aspect = width / height;
           camera.updateProjectionMatrix();
         }
 

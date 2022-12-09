@@ -79,7 +79,7 @@
   }
 
   head.js(
-    "js/samples/simulation.js",
+    // "js/samples/simulation.js",
     "js/samples/star_dipole.js",
     // "js/samples/twisted_dipole.js",
     // "js/samples/radiation.js",
